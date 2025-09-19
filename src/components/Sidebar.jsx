@@ -12,83 +12,80 @@ import simon from "../../assets/simon.png";
 import tom from "../../assets/tom.png";
 import megan from "../../assets/megan.png";
 
-const Sidebar = () => {
+const Sidebar = ({ sidebar }) => {
+  const navItems = [
+    { img: home, label: "Home" },
+    { img: game, label: "Games" },
+    { img: autos, label: "Automobiles" },
+    { img: sports, label: "Sports" },
+    { img: entertainment, label: "Entertainment" },
+    { img: tech, label: "Tech" },
+    { img: music, label: "Music" },
+    { img: blogs, label: "Blogs" },
+    { img: news, label: "News" },
+  ];
+
+  const friends = [
+    { img: jack, label: "Jack" },
+    { img: simon, label: "Simon" },
+    { img: tom, label: "Tom" },
+    { img: megan, label: "Megan" },
+  ];
+
   return (
-    <aside className="w-56 h-screen bg-white shadow-lg flex flex-col py-6 px-4">
+    <aside
+      className={`${
+        sidebar ? "w-56" : "w-16"
+      } h-screen bg-white shadow-lg flex flex-col py-6 px-2 transition-all duration-300`}
+    >
       {/* Navigation Items */}
-      <div className="flex flex-col gap-4">
-        <div className="flex items-center gap-3 p-2 rounded-lg hover:bg-gray-100 cursor-pointer transition">
-          <img src={home} alt="Home" className="w-6 h-6" />
-          <p className="text-gray-800 font-medium">Home</p>
-        </div>
-
-        <div className="flex items-center gap-3 p-2 rounded-lg hover:bg-gray-100 cursor-pointer transition">
-          <img src={game} alt="Games" className="w-6 h-6" />
-          <p className="text-gray-800 font-medium">Games</p>
-        </div>
-
-        <div className="flex items-center gap-3 p-2 rounded-lg hover:bg-gray-100 cursor-pointer transition">
-          <img src={autos} alt="Automobiles" className="w-6 h-6" />
-          <p className="text-gray-800 font-medium">Automobiles</p>
-        </div>
-
-        <div className="flex items-center gap-3 p-2 rounded-lg hover:bg-gray-100 cursor-pointer transition">
-          <img src={sports} alt="Sports" className="w-6 h-6" />
-          <p className="text-gray-800 font-medium">Sports</p>
-        </div>
-
-        <div className="flex items-center gap-3 p-2 rounded-lg hover:bg-gray-100 cursor-pointer transition">
-          <img src={entertainment} alt="Entertainment" className="w-6 h-6" />
-          <p className="text-gray-800 font-medium">Entertainment</p>
-        </div>
-
-        <div className="flex items-center gap-3 p-2 rounded-lg hover:bg-gray-100 cursor-pointer transition">
-          <img src={tech} alt="Tech" className="w-6 h-6" />
-          <p className="text-gray-800 font-medium">Tech</p>
-        </div>
-
-        <div className="flex items-center gap-3 p-2 rounded-lg hover:bg-gray-100 cursor-pointer transition">
-          <img src={music} alt="Music" className="w-6 h-6" />
-          <p className="text-gray-800 font-medium">Music</p>
-        </div>
-
-        <div className="flex items-center gap-3 p-2 rounded-lg hover:bg-gray-100 cursor-pointer transition">
-          <img src={blogs} alt="Blogs" className="w-6 h-6" />
-          <p className="text-gray-800 font-medium">Blogs</p>
-        </div>
-
-        <div className="flex items-center gap-3 p-2 rounded-lg hover:bg-gray-100 cursor-pointer transition">
-          <img src={news} alt="News" className="w-6 h-6" />
-          <p className="text-gray-800 font-medium">News</p>
-        </div>
+      <div className="flex flex-col gap-2">
+        {navItems.map((item, idx) => (
+          <div
+            key={idx}
+            className={`flex items-center p-2 rounded-lg hover:bg-gray-100 cursor-pointer transition
+              ${sidebar ? "gap-3 justify-start" : "justify-center"}`}
+          >
+            <img
+              src={item.img}
+              alt={item.label}
+              className="w-6 h-6 flex-shrink-0"
+            />
+            {sidebar && (
+              <p className="text-gray-800 font-medium">{item.label}</p>
+            )}
+          </div>
+        ))}
       </div>
 
       {/* Divider */}
-      <div className="h-[10px] bg-gray-700 my-4"></div>
+      <div className="border-t border-gray-300 my-4"></div>
 
       {/* Subscribed Section */}
-      <p className="text-gray-500 text-sm font-semibold mb-3 px-2">
-        Subscribed
-      </p>
+      {sidebar && (
+        <p className="text-gray-500 text-sm font-semibold mb-3 px-2">
+          Subscribed
+        </p>
+      )}
 
       {/* Friends Section */}
-      <div className="flex flex-col gap-4">
-        <div className="flex items-center gap-3 p-2 rounded-lg hover:bg-gray-100 cursor-pointer transition">
-          <img src={jack} alt="Jack" className="w-8 h-8 rounded-full" />
-          <p className="text-gray-800 font-medium">Jack</p>
-        </div>
-        <div className="flex items-center gap-3 p-2 rounded-lg hover:bg-gray-100 cursor-pointer transition">
-          <img src={simon} alt="Simon" className="w-8 h-8 rounded-full" />
-          <p className="text-gray-800 font-medium">Simon</p>
-        </div>
-        <div className="flex items-center gap-3 p-2 rounded-lg hover:bg-gray-100 cursor-pointer transition">
-          <img src={tom} alt="Tom" className="w-8 h-8 rounded-full" />
-          <p className="text-gray-800 font-medium">Tom</p>
-        </div>
-        <div className="flex items-center gap-3 p-2 rounded-lg hover:bg-gray-100 cursor-pointer transition">
-          <img src={megan} alt="Megan" className="w-8 h-8 rounded-full" />
-          <p className="text-gray-800 font-medium">Megan</p>
-        </div>
+      <div className="flex flex-col gap-2">
+        {friends.map((friend, idx) => (
+          <div
+            key={idx}
+            className={`flex items-center p-2 rounded-lg hover:bg-gray-100 cursor-pointer transition
+              ${sidebar ? "gap-3 justify-start" : "justify-center"}`}
+          >
+            <img
+              src={friend.img}
+              alt={friend.label}
+              className="w-8 h-8 rounded-full flex-shrink-0"
+            />
+            {sidebar && (
+              <p className="text-gray-800 font-medium">{friend.label}</p>
+            )}
+          </div>
+        ))}
       </div>
     </aside>
   );

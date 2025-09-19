@@ -1,10 +1,10 @@
 import Sidebar from "../components/Sidebar"
 
-const Home = () => {
+const Home = ({sidebar}) => {
   return (
-    <div>
-      <Sidebar />
-    </div>
+    <>
+      <Sidebar sidebar={sidebar} />
+    </>
   )
 }
 export default Home
